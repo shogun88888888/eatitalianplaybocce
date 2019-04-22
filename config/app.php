@@ -226,6 +226,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * User Aliases
+         */
+        'FORM' => Collective\Html\FormFacade::class,
+        'HTML' => Collective\Html\HtmlFacade::class
+
     ],
 
 ];
