@@ -32,7 +32,7 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('pales.roles.create', ['permissions'=>$permissions]);
+        return view('pages.roles.create', ['permissions'=>$permissions]);
     }
 
     /**
