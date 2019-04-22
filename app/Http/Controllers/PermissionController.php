@@ -96,7 +96,7 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($id);
         
-        return view('permissions.edit', compact('permission'));
+        return view('pages.permissions.edit', compact('permission'));
     }
 
     /**

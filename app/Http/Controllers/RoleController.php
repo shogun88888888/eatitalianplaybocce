@@ -20,7 +20,7 @@ class RoleController extends Controller
     {
         $roles = Role::all();
 
-        return view('roles.index')->with('roles', $roles);
+        return view('pages.roles.index')->with('roles', $roles);
     }
 
     /**
@@ -32,7 +32,7 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('roles.create', ['permissions'=>$permissions]);
+        return view('pales.roles.create', ['permissions'=>$permissions]);
     }
 
     /**
@@ -90,7 +90,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
 
-        return view('roles.edit', compact('role', 'permissions'));
+        return view('pages.roles.edit', compact('role', 'permissions'));
     }
 
     /**

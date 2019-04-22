@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('users.index')->with('users', $users);
+        return view('pages.users.index')->with('users', $users);
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::get();
-        return view('users.create', ['roles'=>$roles]);
+        return view('pages.users.create', ['roles'=>$roles]);
     }
 
     /**
@@ -93,7 +93,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::get();
 
-        return view('users.edit', compact('user', 'roles'));
+        return view('pages.users.edit', compact('user', 'roles'));
     }
 
     /**
