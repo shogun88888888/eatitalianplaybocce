@@ -11,6 +11,12 @@ use Session;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'isAdmin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +38,7 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('pales.roles.create', ['permissions'=>$permissions]);
+        return view('pages.roles.create', ['permissions' => $permissions]);
     }
 
     /**
@@ -44,8 +50,8 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=>'required|unique:roles|max:10',
-            'permissions' =>'required',
+                'name' => 'required|unique:roles|max:10',
+                'permissions' => 'required',
             ]
         );
 
@@ -65,7 +71,7 @@ class RoleController extends Controller
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-             'Role'. $role->name.' added!');
+                'Role'.$role->name.' added!');
     }
 
     /**
@@ -104,8 +110,8 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
         $this->validate($request, [
-            'name'=>'required|max:10|unique:roles,name,'.$id,
-            'permissions' =>'required',
+            'name' => 'required|max:10|unique:roles,name,'.$id,
+            'permissions' => 'required',
         ]);
 
         $input = $request->except(['permissions']);
@@ -119,12 +125,12 @@ class RoleController extends Controller
 
         foreach ($permissions as $permission) {
             $p = Permission::where('id', '=', $permission)->firstOrFail(); //Get corresponding form permission in db
-            $role->givePermissionTo($p);  
+            $role->givePermissionTo($p);
         }
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-             'Role'. $role->name.' updated!');
+                'Role'.$role->name.' updated!');
     }
 
     /**
@@ -140,6 +146,6 @@ class RoleController extends Controller
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-             'Role deleted!');
+                'Role deleted!');
     }
 }
